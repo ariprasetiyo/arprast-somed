@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.arprast.sosmed.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_facebook"
+        android:name="com.arprast.sosmed.ui.media.account.facebook.FacebookMainFragment"
+        android:label="@string/menu_facebook"
+        tools:layout="@layout/fragment_media_facebook" />
+
+    <fragment
+        android:id="@+id/nav_twitter"
+        android:name="com.arprast.sosmed.ui.media.account.twitter.TwitterMainFragment"
+        android:label="@string/menu_twitter"
+        tools:layout="@layout/fragment_media_twitter" />
+
+    <fragment
+        android:id="@+id/nav_instagram"
+        android:name="com.arprast.sosmed.ui.media.account.instagram.InstagramMainFragment"
+        android:label="@string/menu_tools"
+        tools:layout="@layout/fragment_media_instagram" />
+
+    <fragment
+        android:id="@+id/nav_share"
+        android:name="com.arprast.sosmed.ui.share.ShareFragment"
+        android:label="@string/menu_share"
+        tools:layout="@layout/fragment_share" />
+
+    <fragment
+        android:id="@+id/nav_send"
+        android:name="com.arprast.sosmed.ui.send.SendFragment"
+        android:label="@string/menu_send"
+        tools:layout="@layout/fragment_send" />
+
+    <fragment
+        android:id="@+id/nav_youtube"
+        android:name="com.arprast.sosmed.ui.media.account.youtube.YoutubeMainFragment"
+        android:label="@string/menu_youtube"
+        />
+
+    <fragment
+        android:id="@+id/nav_account"
+        android:name="com.arprast.sosmed.ui.media.account.AccountMain"
+        android:label="@string/menu_account"
+        tools:layout="@layout/fragment_account_main" />
+        />
+
+</navigation>

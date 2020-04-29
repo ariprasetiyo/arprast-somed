@@ -1,0 +1,23 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <item name="ic_menu_camera" type="drawable">@android:drawable/ic_menu_camera</item>
+    <item name="ic_menu_gallery" type="drawable">@android:drawable/ic_menu_gallery</item>
+    <item name="ic_menu_slideshow" type="drawable">@android:drawable/ic_menu_slideshow</item>
+    <item name="ic_menu_manage" type="drawable">@android:drawable/ic_menu_manage</item>
+    <item name="ic_menu_share" type="drawable">@android:drawable/ic_menu_share</item>
+    <item name="ic_menu_send" type="drawable">@android:drawable/ic_menu_send</item>
+    <item name="ic_menu_save" type="drawable">@android:drawable/ic_menu_save</item>
+    <item name="ic_menu_edit" type="drawable">@android:drawable/ic_menu_edit</item>
+    <item name="ic_menu_delete" type="drawable">@android:drawable/ic_menu_delete</item>
+    <item name="ic_menu_view" type="drawable">@mipmap/ic_launcher_round</item>
+    <item name="ic_menu_input_add" type="drawable">@android:drawable/ic_input_add</item>
+    <item name="ic_menu_input_get" type="drawable">@android:drawable/ic_input_get</item>
+    <item name="ic_menu_info_details" type="drawable">@android:drawable/ic_menu_info_details</item>
+    <item name="ic_menu_help" type="drawable">@android:drawable/ic_menu_help</item>
+    <item name="ic_youtube_icon" type="drawable">@mipmap/ic_youtube_icon</item>
+    <item name="ic_facebook_icon" type="drawable">@mipmap/ic_facebook_icon</item>
+    <item name="ic_twitter_icon" type="drawable">@mipmap/ic_twitter_icon</item>
+    <item name="ic_instagram_icon" type="drawable">@mipmap/ic_instagram_icon</item>
+    <item name="ic_unknown_icon" type="drawable">@mipmap/ic_unknown_icon</item>
+
+
+</resources>

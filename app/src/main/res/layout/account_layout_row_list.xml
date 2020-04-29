@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_transparant">
+
+        <ImageView
+            android:id="@+id/account_favicon_social_media"
+            android:layout_margin="5px"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            />
+
+        <RelativeLayout
+            android:id="@+id/movieDetails"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="49dp"
+            android:layout_marginRight="49dp"
+            android:background="@drawable/background_transparant"
+            android:layout_toRightOf="@id/account_favicon_social_media">
+
+            <TextView
+                android:id="@+id/account_row_list_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5px"
+                android:textColor="@color/yearTitle"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/account_row_list_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/account_row_list_title"
+                android:layout_margin="5px"
+                android:textColor="@color/yearTitle"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>
