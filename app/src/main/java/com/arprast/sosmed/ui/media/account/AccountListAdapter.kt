@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.arprastandroid.R
 import com.arprast.sosmed.type.AccountType
+import org.w3c.dom.Text
 
 class AccountListAdapter(
     val titleC: Array<String>,
@@ -46,6 +47,10 @@ class AccountListAdapter(
             else ->
                 view.findViewById<ImageView>(R.id.account_favicon_social_media).setImageResource(R.drawable.ic_unknown_icon)
         }
+
+        val ttt = view.findViewById<TextView>(R.id.hidden_username_and_password)
+        ttt.setText(username[position])
+        ttt.setTag(password[position])
 
 //        view.findViewById<TextView>(R.id.youtube_row_list_password).setText(password[position])
         return view

@@ -30,6 +30,13 @@
             android:layout_toRightOf="@id/account_favicon_social_media">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:id="@+id/hidden_username_and_password"
+                />
+
+            <TextView
                 android:id="@+id/account_row_list_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

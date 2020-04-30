@@ -1,11 +1,14 @@
 package com.arprast.sosmed.ui.media.account
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ListView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.arprast.sosmed.MainActivity
@@ -23,21 +26,6 @@ class AccountList : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-//        Transformations.map(accountResult, {
-//            val sas = it
-//            Log.i("ari", it.asJSON())
-//            for (i in it.indices ) {
-//                val usernameResult = it[i]?.username;
-//                val passwordResult = it[i]?.password;
-//                val titleResult = it[i]?.title;
-//
-//                username[i] = if(usernameResult == null) "" else usernameResult
-//                password[i]  =if(passwordResult == null) "" else passwordResult
-//                title[i]  = if(titleResult == null) "" else titleResult
-//            }
-//        })
-
 
         val root = inflater.inflate(R.layout.fragment_account_list, container, false)
         val listView = root.findViewById<ListView>(R.id.account_list)
@@ -72,8 +60,14 @@ class AccountList : Fragment() {
                             context
                         )
                     listView.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position, id ->
+
+                        val hiddenField =
+                            view.findViewById<TextView>(R.id.hidden_username_and_password)
+                        val usernameFromList = hiddenField.text.toString()
+                        val passwordFromList = hiddenField.getTag().toString()
+
                         val mapsFragment =
-                            YoutubeMainFragment()
+                            YoutubeMainFragment(usernameFromList, passwordFromList)
                         val fragmentManager = getActivity()?.supportFragmentManager
                         val fragmentTransaction = fragmentManager?.beginTransaction()
                         fragmentTransaction?.replace(android.R.id.content, mapsFragment)
