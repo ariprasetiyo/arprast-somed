@@ -3,6 +3,7 @@ package com.arprast.sosmed.ui.media.account.youtube
 import android.app.AlertDialog
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ class YoutubeMainFragment(username: String, password: String) : Fragment() {
     private lateinit var mapViewModel: MapViewModel
     private val username = username
     private val password = password
+    private var onceAccess = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,8 +50,10 @@ class YoutubeMainFragment(username: String, password: String) : Fragment() {
 
             override fun onLoadResource(view: WebView, url: String) {
 
-                if (url.startsWith("https://ssl.gstatic.com/accounts/static/_/js/k=gaia.gaiafe_glif.en.Zy6b--0OtFE.O/am=2MYPCP0wAAAgAkWAHwAAAAAAAAAAoMGBx-chj787mRl91MtuSzY/d=0/ct=zgms/rs=ABkqax0JQVxn0GQyUyUuzLMwCtXlSozGOg/m=sy10,sy11,sy13,sy14,sy2z,sy30,pwd_view")) {
+                Log.i("ari-p", url)
+                if ( onceAccess && url.startsWith("https://ssl.gstatic.com/accounts/static/_/js/k=gaia.gaiafe_glif.en.ZHrBSbWvFD0.O/am=2MYPCP2QAACACBQBfgAAAAAAAAAAgAaBx-chj787mYk-6mW3JRs/d=0/ct=zgms/rs=ABkqax0GrHOGTn-8emJKHSyccs8OVlFyng/m=sy10")) {
 //                    webViewInstance.loadUrl("file:///android_asset/alert.html")
+                    onceAccess = false;
                     val showText = TextView(context)
                     showText.text = "$password"
                     showText.setTextIsSelectable(true)

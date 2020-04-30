@@ -70,7 +70,7 @@ class AccountList : Fragment() {
                             YoutubeMainFragment(usernameFromList, passwordFromList)
                         val fragmentManager = getActivity()?.supportFragmentManager
                         val fragmentTransaction = fragmentManager?.beginTransaction()
-                        fragmentTransaction?.replace(android.R.id.content, mapsFragment)
+                        fragmentTransaction?.replace(R.id.container, mapsFragment)
                         fragmentTransaction?.addToBackStack(null)
                         fragmentTransaction?.commit()
                     })
