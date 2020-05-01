@@ -9,7 +9,7 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
-import com.example.arprastandroid.R
+import com.arprastandroid.R
 
 class InstagramWebpageFragment : Fragment() {
     override fun onCreateView(

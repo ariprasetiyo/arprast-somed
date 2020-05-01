@@ -11,9 +11,7 @@ import android.view.ViewGroup
 import android.webkit.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import com.example.arprastandroid.R
+import com.arprastandroid.R
 
 class InstagramMainFragment(username: String, password: String) : Fragment() {
 

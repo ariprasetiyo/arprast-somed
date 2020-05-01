@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.arprast.sosmed.MainActivity
-import com.example.arprastandroid.R
+import com.arprastandroid.R
 import com.arprast.sosmed.model.Account
 import com.arprast.sosmed.repository.AccountRepository
 import com.arprast.sosmed.type.AccountType

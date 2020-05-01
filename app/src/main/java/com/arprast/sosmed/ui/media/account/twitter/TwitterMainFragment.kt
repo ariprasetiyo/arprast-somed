@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import android.webkit.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.arprastandroid.R
+import com.arprastandroid.R
 
 
 class TwitterMainFragment(username: String, password: String) : Fragment() {

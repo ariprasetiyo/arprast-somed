@@ -17,7 +17,7 @@ import com.arprast.sosmed.ui.media.account.facebook.FacebookMainFragment
 import com.arprast.sosmed.ui.media.account.instagram.InstagramMainFragment
 import com.arprast.sosmed.ui.media.account.twitter.TwitterMainFragment
 import com.arprast.sosmed.ui.media.account.youtube.YoutubeMainFragment
-import com.example.arprastandroid.R
+import com.arprastandroid.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.realm.RealmResults
 

@@ -14,7 +14,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.arprastandroid.R
+import com.arprastandroid.R
 
 class YoutubeMainFragment(username: String, password: String) : Fragment() {
 

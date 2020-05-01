@@ -6,8 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.arprast.sosmed.util.FragmentUtil
-import com.example.arprastandroid.R
+import com.arprastandroid.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 

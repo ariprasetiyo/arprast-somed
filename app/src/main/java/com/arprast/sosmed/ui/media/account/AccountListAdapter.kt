@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.arprastandroid.R
+import com.arprastandroid.R
 import com.arprast.sosmed.type.AccountType
 import org.w3c.dom.Text
 

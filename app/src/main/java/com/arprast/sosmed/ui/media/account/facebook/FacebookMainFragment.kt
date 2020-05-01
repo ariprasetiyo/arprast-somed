@@ -1,19 +1,13 @@
 package com.arprast.sosmed.ui.media.account.facebook
 
-import android.app.AlertDialog
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import com.example.arprastandroid.R
+import com.arprastandroid.R
 
 class FacebookMainFragment(username: String, password: String) : Fragment() {
 
