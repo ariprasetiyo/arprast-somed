@@ -43,8 +43,9 @@
 
     <fragment
         android:id="@+id/nav_youtube"
-        android:name="com.arprast.sosmed.ui.media.account.youtube.YoutubeMainFragment"
+        android:name="com.arprast.sosmed.ui.media.account.youtube.YoutubeWebPageFragment"
         android:label="@string/menu_youtube"
+        tools:layout="@layout/fragment_media_youtube" />
         />
 
     <fragment

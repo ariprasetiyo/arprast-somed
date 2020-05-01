@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebChromeClient
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.TextView
@@ -38,6 +39,7 @@ class YoutubeMainFragment(username: String, password: String) : Fragment() {
         webViewSetting.loadsImagesAutomatically = true
         webViewSetting.javaScriptEnabled = true
         webViewSetting.domStorageEnabled = true
+        webViewSetting.cacheMode = WebSettings.LOAD_DEFAULT
         webViewInstance.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
         webViewInstance.setWebChromeClient(WebChromeClient())
         webViewInstance.setWebViewClient(object : WebViewClient() {
@@ -50,8 +52,7 @@ class YoutubeMainFragment(username: String, password: String) : Fragment() {
 
             override fun onLoadResource(view: WebView, url: String) {
 
-                Log.i("ari-p", url)
-                if ( onceAccess && url.startsWith("https://ssl.gstatic.com/accounts/static/_/js/k=gaia.gaiafe_glif.en.ZHrBSbWvFD0.O/am=2MYPCP2QAACACBQBfgAAAAAAAAAAgAaBx-chj787mYk-6mW3JRs/d=0/ct=zgms/rs=ABkqax0GrHOGTn-8emJKHSyccs8OVlFyng/m=sy10")) {
+                if ( onceAccess && url.startsWith("https://accounts.google.com/_/lookup/accountlookup?")) {
 //                    webViewInstance.loadUrl("file:///android_asset/alert.html")
                     onceAccess = false;
                     val showText = TextView(context)
