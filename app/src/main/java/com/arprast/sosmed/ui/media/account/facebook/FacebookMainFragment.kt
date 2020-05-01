@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebChromeClient
+import android.webkit.WebSettings
+import android.webkit.WebView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -12,20 +15,23 @@ import com.example.arprastandroid.R
 
 class FacebookMainFragment : Fragment() {
 
-    private lateinit var galleryViewModel: GalleryViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        galleryViewModel =
-            ViewModelProviders.of(this).get(GalleryViewModel::class.java)
+
         val root = inflater.inflate(R.layout.fragment_media_facebook, container, false)
-        val textView: TextView = root.findViewById(R.id.text_gallery)
-        galleryViewModel.text.observe(this, Observer {
-            textView.text = it
-        })
+        val webViewFacebook = root.findViewById(R.id.webviewFacebook) as WebView
+        webViewFacebook.loadUrl("https://m.facebook.com/login/?next&ref=dbl&fl&refid=8")
+        val webViewSetting = webViewFacebook.settings
+        webViewSetting.loadsImagesAutomatically = true
+        webViewSetting.javaScriptEnabled = true
+        webViewSetting.domStorageEnabled = true
+        webViewSetting.cacheMode = WebSettings.LOAD_DEFAULT
+        webViewFacebook.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
+        webViewFacebook.setWebChromeClient(WebChromeClient())
+
         return root
     }
 }

@@ -30,10 +30,13 @@ class AccountListAdapter(
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view = inflter.inflate(R.layout.account_layout_row_list, null);
-        view.findViewById<TextView>(R.id.account_row_list_title)
-            .setText("${title[position]} ${username[position]}")
+        val titleView = view.findViewById<TextView>(R.id.account_row_list_title)
+
         view.findViewById<TextView>(R.id.account_row_list_description)
             .setText(description[position])
+
+        titleView.setText("${title[position]} ${username[position]}")
+        titleView.setTag(accountType[position].stringValue)
 
         when (accountType[position]) {
             AccountType.YOUTUBE ->
