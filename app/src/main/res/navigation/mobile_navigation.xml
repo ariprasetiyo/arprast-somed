@@ -13,19 +13,19 @@
 
     <fragment
         android:id="@+id/nav_facebook"
-        android:name="com.arprast.sosmed.ui.media.account.facebook.FacebookMainFragment"
+        android:name="com.arprast.sosmed.ui.media.account.facebook.FacebookWebpageFragment"
         android:label="@string/menu_facebook"
         tools:layout="@layout/fragment_media_facebook" />
 
     <fragment
         android:id="@+id/nav_twitter"
-        android:name="com.arprast.sosmed.ui.media.account.twitter.TwitterMainFragment"
+        android:name="com.arprast.sosmed.ui.media.account.twitter.TwitterWebPageFragment"
         android:label="@string/menu_twitter"
         tools:layout="@layout/fragment_media_twitter" />
 
     <fragment
         android:id="@+id/nav_instagram"
-        android:name="com.arprast.sosmed.ui.media.account.instagram.InstagramMainFragment"
+        android:name="com.arprast.sosmed.ui.media.account.instagram.InstagramWebpageFragment"
         android:label="@string/menu_tools"
         tools:layout="@layout/fragment_media_instagram" />
 

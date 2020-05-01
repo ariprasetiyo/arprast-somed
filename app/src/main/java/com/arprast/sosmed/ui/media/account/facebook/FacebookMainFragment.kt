@@ -13,7 +13,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.arprastandroid.R
 
-class FacebookMainFragment : Fragment() {
+class FacebookMainFragment(username : String, password : String) : Fragment() {
+
+    private val username = username
+    private val password = password
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -13,6 +13,9 @@ import com.arprast.sosmed.MainActivity
 import com.arprast.sosmed.model.Account
 import com.arprast.sosmed.repository.AccountRepository
 import com.arprast.sosmed.type.AccountType
+import com.arprast.sosmed.ui.media.account.facebook.FacebookMainFragment
+import com.arprast.sosmed.ui.media.account.instagram.InstagramMainFragment
+import com.arprast.sosmed.ui.media.account.twitter.TwitterMainFragment
 import com.arprast.sosmed.ui.media.account.youtube.YoutubeMainFragment
 import com.example.arprastandroid.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -73,13 +76,17 @@ class AccountList( bottomNavigationView : BottomNavigationView?) : Fragment() {
 
 
                         when(accountType){
-                            AccountType.FACEBOOK -> ""
-                            AccountType.YOUTUBE -> ""
-                            AccountType.INSTAGRAM -> ""
-                            AccountType.TWITTER -> ""
+                            AccountType.FACEBOOK ->
+                                openFragment(FacebookMainFragment(usernameFromList, passwordFromList))
+                            AccountType.YOUTUBE ->
+                                openFragment(YoutubeMainFragment(usernameFromList, passwordFromList))
+                            AccountType.INSTAGRAM ->
+                                openFragment(InstagramMainFragment(usernameFromList, passwordFromList))
+                            AccountType.TWITTER ->
+                                openFragment(TwitterMainFragment(usernameFromList, passwordFromList))
                             else -> ""
                         }
-                        openFragment(YoutubeMainFragment(usernameFromList, passwordFromList))
+
                     })
                 })
         }
