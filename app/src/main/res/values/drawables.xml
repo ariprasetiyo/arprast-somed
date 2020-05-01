@@ -19,5 +19,11 @@
     <item name="ic_instagram_icon" type="drawable">@mipmap/ic_instagram_icon</item>
     <item name="ic_unknown_icon" type="drawable">@mipmap/ic_unknown_icon</item>
 
+    <item name="mn_ic_youtube_icon" type="drawable">@mipmap/menu_ic_youtube</item>
+    <item name="mn_ic_facebook_icon" type="drawable">@mipmap/menu_ic_facebook</item>
+    <item name="mn_ic_twitter_icon" type="drawable">@mipmap/menu_ic_twitter</item>
+    <item name="mn_ic_instagram_icon" type="drawable">@mipmap/menu_ic_instagram</item>
+    <item name="mn_ic_homeadvisor_icon" type="drawable">@mipmap/menu_ic_homeadvisor</item>
+    <item name="mn_ic_account_icon" type="drawable">@mipmap/menu_ic_account</item>
 
 </resources>

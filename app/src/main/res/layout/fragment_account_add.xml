@@ -20,7 +20,7 @@
             android:inputType="textCapWords"
             android:textSize="16sp"
             app:met_floatingLabel="highlight"
-            app:met_maxCharacters="150"
+            app:met_maxCharacters="30"
             app:met_minCharacters="2" />
 
         <!-- dropdown account type-->
@@ -52,7 +52,7 @@
             android:inputType="textPersonName"
             android:textSize="16sp"
             app:met_floatingLabel="highlight"
-            app:met_maxCharacters="100"
+            app:met_maxCharacters="50"
             app:met_minCharacters="2" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -63,7 +63,7 @@
             android:inputType="textWebPassword"
             android:textSize="16sp"
             app:met_floatingLabel="highlight"
-            app:met_maxCharacters="150"
+            app:met_maxCharacters="50"
             app:met_minCharacters="2" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -74,7 +74,7 @@
             android:inputType="textWebPassword"
             android:textSize="16sp"
             app:met_floatingLabel="highlight"
-            app:met_maxCharacters="150"
+            app:met_maxCharacters="50"
             app:met_minCharacters="2" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -85,7 +85,7 @@
             android:inputType="text"
             android:textSize="16sp"
             app:met_floatingLabel="highlight"
-            app:met_maxCharacters="500" />
+            app:met_maxCharacters="100" />
 
         <Button
             android:id="@+id/save_account_button"
