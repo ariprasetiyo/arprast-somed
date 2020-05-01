@@ -52,7 +52,10 @@ class YoutubeMainFragment(username: String, password: String) : Fragment() {
 
             override fun onLoadResource(view: WebView, url: String) {
 
-                if ( onceAccess && url.startsWith("https://accounts.google.com/_/lookup/accountlookup?")) {
+                Log.i("ari-p", url)
+                if ( onceAccess
+                    && (url.startsWith("https://accounts.google.com/_/lookup/accountlookup?"))
+                    || (url.startsWith("https://accounts.google.com/_/signin/chooseaccount?"))) {
 //                    webViewInstance.loadUrl("file:///android_asset/alert.html")
                     onceAccess = false;
                     val showText = TextView(context)
