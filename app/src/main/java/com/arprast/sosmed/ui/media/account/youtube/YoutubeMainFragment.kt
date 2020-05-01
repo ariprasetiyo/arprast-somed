@@ -14,13 +14,10 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import com.example.arprastandroid.R
-
 
 class YoutubeMainFragment(username: String, password: String) : Fragment() {
 
-    private lateinit var mapViewModel: MapViewModel
     private val username = username
     private val password = password
     private var onceAccess = true
@@ -31,7 +28,6 @@ class YoutubeMainFragment(username: String, password: String) : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        mapViewModel = ViewModelProviders.of(this).get(MapViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_media_youtube, container, false)
         val webViewInstance = root.findViewById(R.id.webview) as WebView
         val webViewSetting = webViewInstance.settings
