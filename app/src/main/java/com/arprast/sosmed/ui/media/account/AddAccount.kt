@@ -67,7 +67,11 @@ class AddAccount : Fragment() {
         account.description = youtubeDescription
         account.accountType = inputAccountType.text.toString()
         if (isValidateInputData(account, inputYoutubeReEntryPassword.text.toString())) {
-            AccountRepository().saveAccount(account)
+            if(AccountRepository().saveAccount(account)){
+                tostText("Save success")
+            }else{
+                tostText("Save fail")
+            }
         }
     }
 
@@ -105,7 +109,7 @@ class AddAccount : Fragment() {
         activity.let {
             val invalidateInputMesssage =
                 Toast.makeText(it, text, Toast.LENGTH_LONG)
-            invalidateInputMesssage.setGravity(Gravity.CENTER, 200, 200)
+            invalidateInputMesssage.setGravity(Gravity.CENTER, 0, 0)
             invalidateInputMesssage.show()
         }
     }

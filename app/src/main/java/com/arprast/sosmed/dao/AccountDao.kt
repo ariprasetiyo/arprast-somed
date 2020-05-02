@@ -13,10 +13,10 @@ class AccountDao(val realm: Realm) {
     fun <T : RealmModel> RealmResults<T>.asLiveData() =
         RealmLiveData<T>(this)
 
-    fun saveAccount(account: Account) {
-        realm.executeTransactionAsync {
+    fun saveAccount(account: Account) : Boolean {
+        return !realm.executeTransactionAsync {
             it.insert(account)
-        }
+        }.isCancelled
     }
 
     fun getAccounts(account : Account): LiveData<RealmResults<Account>> {

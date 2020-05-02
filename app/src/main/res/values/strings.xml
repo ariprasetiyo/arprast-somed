@@ -5,7 +5,7 @@
     <string name="nav_header_title">Arprast</string>
     <string name="nav_header_subtitle">Social media list</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="show_password">Show credential</string>
+    <string name="show_password">Settings</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>

@@ -17,7 +17,7 @@ class AccountRepository : ViewModel() {
         Realm.getDefaultInstance()
     }
 
-    fun saveAccount(account: Account) {
+    fun saveAccount(account: Account) : Boolean {
         account.id = Calendar.getInstance().timeInMillis
         account.createDate = Date()
         return realm.accountDao().saveAccount(account)
