@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
 import androidx.fragment.app.Fragment
+import com.arprast.sosmed.util.ShowTextUtil
 import com.arprastandroid.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class FacebookMainFragment(username: String, password: String) : Fragment() {
 
@@ -21,6 +23,13 @@ class FacebookMainFragment(username: String, password: String) : Fragment() {
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_media_youtube, container, false)
+
+        val fab: FloatingActionButton = root.findViewById(R.id.float_show_password)
+        fab.setOnClickListener { view ->
+            ShowTextUtil.showTextUtil("Credential account !", "Username: $username\nPassword: $password", context)
+
+        }
+
         val webViewFacebook = root.findViewById(R.id.webview) as WebView
         webViewFacebook.loadUrl("https://m.facebook.com/login/?next&ref=dbl&fl&refid=8")
         val webViewSetting = webViewFacebook.settings

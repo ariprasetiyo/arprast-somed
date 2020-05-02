@@ -31,7 +31,7 @@ class YoutubeMainFragment(username: String, password: String) : Fragment() {
 
         val fab: FloatingActionButton = root.findViewById(R.id.float_show_password)
         fab.setOnClickListener { view ->
-            ShowTextUtil.showTextUtil("Credential account !", "Username $username\nPassword $password", context)
+            ShowTextUtil.showTextUtil("Credential account !", "Username: $username\nPassword: $password", context)
 
         }
 

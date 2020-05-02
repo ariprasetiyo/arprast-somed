@@ -91,7 +91,6 @@
             android:id="@+id/save_account_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="btnClicked"
             android:text="Save"
             android:textAllCaps="true"
             android:textSize="16sp" />

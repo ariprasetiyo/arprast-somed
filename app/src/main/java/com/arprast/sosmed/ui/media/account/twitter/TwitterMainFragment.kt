@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.arprast.sosmed.util.ShowTextUtil
 import com.arprastandroid.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class TwitterMainFragment(username: String, password: String) : Fragment() {
@@ -29,6 +30,13 @@ class TwitterMainFragment(username: String, password: String) : Fragment() {
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_media_youtube, container, false)
+
+        val fab: FloatingActionButton = root.findViewById(R.id.float_show_password)
+        fab.setOnClickListener { view ->
+            ShowTextUtil.showTextUtil("Credential account !", "Username: $username\nPassword: $password", context)
+
+        }
+
         val webViewFacebook = root.findViewById(R.id.webview) as WebView
         val webViewSetting = webViewFacebook.settings
         webViewFacebook.loadUrl("https://mobile.twitter.com/login/error?username_or_email=$username&redirect_after_login=%2F")
