@@ -20,8 +20,8 @@ class FacebookMainFragment(username: String, password: String) : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_media_facebook, container, false)
-        val webViewFacebook = root.findViewById(R.id.webviewFacebook) as WebView
+        val root = inflater.inflate(R.layout.fragment_media_youtube, container, false)
+        val webViewFacebook = root.findViewById(R.id.webview) as WebView
         webViewFacebook.loadUrl("https://m.facebook.com/login/?next&ref=dbl&fl&refid=8")
         val webViewSetting = webViewFacebook.settings
         webViewSetting.loadsImagesAutomatically = true

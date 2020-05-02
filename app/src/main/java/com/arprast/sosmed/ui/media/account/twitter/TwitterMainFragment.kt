@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.webkit.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.arprast.sosmed.util.ShowTextUtil
 import com.arprastandroid.R
 
 
@@ -27,8 +28,8 @@ class TwitterMainFragment(username: String, password: String) : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_media_facebook, container, false)
-        val webViewFacebook = root.findViewById(R.id.webviewFacebook) as WebView
+        val root = inflater.inflate(R.layout.fragment_media_youtube, container, false)
+        val webViewFacebook = root.findViewById(R.id.webview) as WebView
         val webViewSetting = webViewFacebook.settings
         webViewFacebook.loadUrl("https://mobile.twitter.com/login/error?username_or_email=$username&redirect_after_login=%2F")
         webViewSetting.loadsImagesAutomatically = true
@@ -49,17 +50,7 @@ class TwitterMainFragment(username: String, password: String) : Fragment() {
             override fun onProgressChanged(view: WebView, newProgress: Int) {
                 if (newProgress == 100 && showPassword == true) {
                     showPassword = false
-                    val showText = TextView(context)
-                    showText.text = "$password"
-                    showText.setTextIsSelectable(true)
-                    showText.gravity = Gravity.CENTER
-                    showText.setTextColor(Color.BLACK)
-                    showText.textSize = 20.0F
-                    val builder = AlertDialog.Builder(context)
-                    builder.setView(showText)
-                        .setTitle("Copy password below !")
-                        .setCancelable(true)
-                        .show()
+                    ShowTextUtil.showTextUtil("Copy password below !", password, context)
                 }
             }
         })

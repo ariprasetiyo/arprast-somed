@@ -1,16 +1,14 @@
 package com.arprast.sosmed.ui.media.account.instagram
 
-import android.app.AlertDialog
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.arprast.sosmed.util.ShowTextUtil
 import com.arprastandroid.R
 
 class InstagramMainFragment(username: String, password: String) : Fragment() {
@@ -24,8 +22,8 @@ class InstagramMainFragment(username: String, password: String) : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_media_facebook, container, false)
-        val webViewFacebook = root.findViewById(R.id.webviewFacebook) as WebView
+        val root = inflater.inflate(R.layout.fragment_media_youtube, container, false)
+        val webViewFacebook = root.findViewById(R.id.webview) as WebView
         webViewFacebook.loadUrl("https://www.instagram.com/accounts/login/")
         val webViewSetting = webViewFacebook.settings
         webViewSetting.loadsImagesAutomatically = true
@@ -45,21 +43,22 @@ class InstagramMainFragment(username: String, password: String) : Fragment() {
         })
         webViewFacebook.setWebViewClient(object : WebViewClient() {
             override fun onPageFinished(view: WebView, url: String) {
-//                view.loadUrl(
-//                    "javascript:var yy =document.getElementsByName('username')[0].value = '$username';" +
-//                            "var xx = document.getElementsByName('password')[0].value='$password';"
-//                )
-                val showText = TextView(context)
-                showText.text = "$password"
-                showText.setTextIsSelectable(true)
-                showText.gravity = Gravity.CENTER
-                showText.setTextColor(Color.BLACK)
-                showText.textSize = 20.0F
-                val builder = AlertDialog.Builder(context)
-                builder.setView(showText)
-                    .setTitle("Copy password below !")
-                    .setCancelable(true)
-                    .show()
+
+                if(url.startsWith("https://www.instagram.com/accounts/login/")){
+                    Log.d("ari-p", url)
+                    view.loadUrl(
+                        "javascript:var yy =document.getElementsByName('username')[0].value = '$username';" +
+                                "var xx = document.getElementsByName('password')[0].value='$password';"
+                    )
+                    ShowTextUtil.showTextUtil("Copy password below !", password, context)
+                }
+            }
+
+            override fun onLoadResource(view: WebView, url: String) {
+                Log.d("ari-p", url)
+                if(url.startsWith("https://graph.instagram.com/logging_client_events")){
+                    ShowTextUtil.showTextUtil("Copy password below !", password, context)
+                }
             }
         })
 

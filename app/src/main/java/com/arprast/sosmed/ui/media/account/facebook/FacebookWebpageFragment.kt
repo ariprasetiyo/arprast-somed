@@ -17,8 +17,8 @@ class FacebookWebpageFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_media_youtube, container, false)
-        val webView = rootView.findViewById(R.id.webview) as WebView
+        val rootView = inflater.inflate(R.layout.fragment_media_facebook, container, false)
+        val webView = rootView.findViewById(R.id.web_view_facebook) as WebView
         val settingsWebView = webView.settings
         webView.loadUrl("https://m.facebook.com/")
         settingsWebView.javaScriptEnabled = true
