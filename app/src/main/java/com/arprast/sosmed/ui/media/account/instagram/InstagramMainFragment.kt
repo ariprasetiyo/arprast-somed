@@ -27,7 +27,11 @@ class InstagramMainFragment(username: String, password: String) : Fragment() {
 
         val fab: FloatingActionButton = root.findViewById(R.id.float_show_password)
         fab.setOnClickListener { view ->
-            ShowTextUtil.showTextUtil("Credential account !", "Username: $username\nPassword: $password", context)
+            ShowTextUtil.showTextUtil(
+                "Credential account !",
+                "Username: $username\nPassword: $password",
+                context
+            )
 
         }
 
@@ -49,26 +53,28 @@ class InstagramMainFragment(username: String, password: String) : Fragment() {
                 return super.onConsoleMessage(consoleMessage)
             }
         })
-//        webViewFacebook.setWebViewClient(object : WebViewClient() {
-//            override fun onPageFinished(view: WebView, url: String) {
-//
-//                if(url.startsWith("https://www.instagram.com/accounts/login/")){
+        webViewFacebook.setWebViewClient(object : WebViewClient() {
+            override fun onPageFinished(view: WebView, url: String) {
+
+                if (url.startsWith("https://www.instagram.com/accounts/login/")) {
 //                    Log.d("ari-p", url)
-//                    view.loadUrl(
-//                        "javascript:var yy =document.getElementsByName('username')[0].value = '$username';" +
-//                                "var xx = document.getElementsByName('password')[0].value='$password';"
-//                    )
+                    view.loadUrl(
+                        "javascript:var yy =document.getElementsByName('username')[0].value = '$username';" +
+                                "var xx = document.getElementsByName('password')[0].value='$password';"
+                    )
 //                    ShowTextUtil.showTextUtil("Copy password below !", password, context)
-//                }
-//            }
-//
-//            override fun onLoadResource(view: WebView, url: String) {
-//                Log.d("ari-p", url)
-//                if(url.startsWith("https://graph.instagram.com/logging_client_events")){
-//                    ShowTextUtil.showTextUtil("Copy password below !", password, context)
-//                }
-//            }
-//        })
+                }
+            }
+
+            override fun onLoadResource(view: WebView, url: String) {
+                Log.d("ari-p", url)
+                if (url.endsWith("https://www.instagram.com/") ||
+                    url.endsWith("https://www.instagram.com")
+                ) {
+                    fab.visibility = View.GONE
+                }
+            }
+        })
 
         return root
     }

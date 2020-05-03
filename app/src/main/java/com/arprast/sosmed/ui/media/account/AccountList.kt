@@ -8,6 +8,7 @@ import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import com.arprast.sosmed.MainActivity
 import com.arprast.sosmed.model.Account
@@ -21,20 +22,20 @@ import com.arprastandroid.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.realm.RealmResults
 
-class AccountList( bottomNavigationView : BottomNavigationView?) : Fragment() {
+class AccountList(bottomNavigationView: BottomNavigationView?, it : FragmentActivity) : Fragment() {
 
     private val bottomNavigationView = bottomNavigationView
+    private val it = it
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val root = inflater.inflate(R.layout.fragment_account_list, container, false)
-        val listView = root.findViewById<ListView>(R.id.account_list)
-        val context = context as MainActivity
-        activity?.let {
+
+            val listView = root.findViewById<ListView>(R.id.account_list)
+            val context = context as MainActivity
 
             val usernameList: ArrayList<String> = ArrayList()
             val passwordList: ArrayList<String> = ArrayList()
@@ -71,25 +72,46 @@ class AccountList( bottomNavigationView : BottomNavigationView?) : Fragment() {
                             view.findViewById<TextView>(R.id.hidden_username_and_password)
                         val usernameFromList = hiddenField.text.toString()
                         val passwordFromList = hiddenField.getTag().toString()
-                        val accountTypeView = view.findViewById<TextView>(R.id.account_row_list_title).getTag().toString()
+                        val accountTypeView =
+                            view.findViewById<TextView>(R.id.account_row_list_title).getTag()
+                                .toString()
                         val accountType = AccountType.valueOfString(accountTypeView)
 
 
-                        when(accountType){
+                        when (accountType) {
                             AccountType.FACEBOOK ->
-                                openFragment(FacebookMainFragment(usernameFromList, passwordFromList))
+                                openFragment(
+                                    FacebookMainFragment(
+                                        usernameFromList,
+                                        passwordFromList
+                                    )
+                                )
                             AccountType.YOUTUBE ->
-                                openFragment(YoutubeMainFragment(usernameFromList, passwordFromList))
+                                openFragment(
+                                    YoutubeMainFragment(
+                                        usernameFromList,
+                                        passwordFromList
+                                    )
+                                )
                             AccountType.INSTAGRAM ->
-                                openFragment(InstagramMainFragment(usernameFromList, passwordFromList))
+                                openFragment(
+                                    InstagramMainFragment(
+                                        usernameFromList,
+                                        passwordFromList
+                                    )
+                                )
                             AccountType.TWITTER ->
-                                openFragment(TwitterMainFragment(usernameFromList, passwordFromList))
+                                openFragment(
+                                    TwitterMainFragment(
+                                        usernameFromList,
+                                        passwordFromList
+                                    )
+                                )
                             else -> ""
                         }
 
                     })
                 })
-        }
         return root
     }
 
