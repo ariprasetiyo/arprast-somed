@@ -1,5 +1,6 @@
 package com.arprast.sosmed.ui.media.account.facebook
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
 import androidx.fragment.app.Fragment
+import com.arprast.sosmed.util.PreferanceVariable
 import com.arprast.sosmed.util.ShowTextUtil
 import com.arprastandroid.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -26,7 +28,11 @@ class FacebookMainFragment(username: String, password: String) : Fragment() {
 
         val fab: FloatingActionButton = root.findViewById(R.id.float_show_password)
         fab.setOnClickListener { view ->
-            ShowTextUtil.showTextUtil("Credential account !", "Username: $username\nPassword: $password", context)
+            ShowTextUtil.showTextUtil(
+                "Credential account !",
+                "Username: $username\nPassword: $password",
+                context
+            )
 
         }
 
@@ -50,10 +56,19 @@ class FacebookMainFragment(username: String, password: String) : Fragment() {
         })
         webViewFacebook.setWebViewClient(object : WebViewClient() {
             override fun onPageFinished(view: WebView, url: String) {
+                Log.d(PreferanceVariable.DEBUG_NAME, url)
                 view.loadUrl(
                     "javascript:var yy =document.getElementById('m_login_email').value = '$username';" +
                             "var xx = document.getElementById('m_login_password').value='$password';"
                 )
+            }
+
+            override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
+                if (url.startsWith("https://m.facebook.com/home.php") ||
+                    url.startsWith("https://m.facebook.com/?ref=dbl&_rdr")
+                ) {
+                    fab.visibility = View.GONE
+                }
             }
         })
 
