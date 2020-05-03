@@ -44,7 +44,7 @@ class AccountMain : Fragment() {
                         openFragment(AccountList(bottomNavigationView, it))
                     }
                     R.id.account_bottom_menu_add -> {
-                        openFragment(AddAccount())
+                        openFragment(AddAccount(-1))
                     }
                     R.id.account_bottom_menu_help -> {
                         tostText("Not yet support")

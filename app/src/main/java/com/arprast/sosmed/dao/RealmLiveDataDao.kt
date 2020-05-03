@@ -21,7 +21,7 @@ class RealmLiveDataDao(val realm: Realm) {
 
     fun saveAccount(account: Account): Boolean {
         return !realm.executeTransactionAsync {
-            it.insert(account)
+            it.insertOrUpdate(account)
         }.isCancelled
     }
 
@@ -32,6 +32,12 @@ class RealmLiveDataDao(val realm: Realm) {
         return realm.where(Account::class.java)
 //            .equalTo("accountType", account.accountType)
             .findAllAsync().asLiveData()
+    }
+
+    fun getAccount(account: Account): Account? {
+        return realm.where(Account::class.java)
+            .equalTo(ID, account.id)
+            .findFirst()
     }
 
     fun updateUserInterfacing(userInterfacing: UserInterfacing) {

@@ -137,26 +137,31 @@ class AccountList(bottomNavigationView: BottomNavigationView?, it: FragmentActiv
         listView.setOnItemLongClickListener(OnItemLongClickListener { parent, view, pos, id ->
 
             val hiddenAccountId =
-                view.findViewById<TextView>(R.id.hidden_account_id).text.toString()
+                view.findViewById<TextView>(R.id.hidden_account_id).text.toString().toLong()
 
             val builder = AlertDialog.Builder(activity)
             builder.setTitle("Account Action")
             builder.setMessage("Are you want to edit or delete ?")
             builder.setPositiveButton("Edit", DialogInterface.OnClickListener { dialog, idDialog ->
-                openFragment(AccountList(bottomNavigationView, it))
+                openFragment(AddAccount(hiddenAccountId))
             })
             builder.setNegativeButton(
                 "Delete",
                 DialogInterface.OnClickListener { dialog, idDialog ->
-                    val account = Account()
-                    account.id = hiddenAccountId.toLong()
-                    AccountRepository().deleteAccount(account)
-                    openFragment(AccountList(bottomNavigationView, it))
+                    deleteAccount(hiddenAccountId)
                 })
 
             builder.create().show()
             true
         })
+    }
+
+    private fun deleteAccount(accountId : Long) {
+
+        val account = Account()
+        account.id = accountId
+        AccountRepository().deleteAccount(account)
+        openFragment(AccountList(bottomNavigationView, it))
     }
 
     private fun openFragment(fragment: Fragment) {
