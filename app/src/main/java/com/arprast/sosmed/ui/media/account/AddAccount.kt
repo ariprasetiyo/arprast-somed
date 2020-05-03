@@ -2,6 +2,8 @@ package com.arprast.sosmed.ui.media.account
 
 import android.content.Context
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +15,8 @@ import com.arprastandroid.R
 import com.arprast.sosmed.model.Account
 import com.arprast.sosmed.repository.AccountRepository
 import com.arprast.sosmed.type.AccountType
+import com.arprast.sosmed.util.PreferanceVariable.Companion.HIDDEN
+import com.arprast.sosmed.util.PreferanceVariable.Companion.SHOW
 
 
 class AddAccount : Fragment() {
@@ -26,9 +30,14 @@ class AddAccount : Fragment() {
         val context = context as MainActivity
         getAccountTypeList(context, root)
 
+        val inputYoutubePassword = root.findViewById(R.id.input_account_password) as EditText
+        val inputYoutubeReEntryPassword =
+            root.findViewById(R.id.input_account_re_entry_password) as EditText
+
+        showHiddenPasswordListener(root, inputYoutubePassword, inputYoutubeReEntryPassword)
         val button = root.findViewById(R.id.save_account_button) as Button
         button.setOnClickListener(View.OnClickListener {
-            saveAccountYoutube(root)
+            saveAccountYoutube(root, inputYoutubePassword, inputYoutubeReEntryPassword)
         })
         return root
     }
@@ -44,13 +53,46 @@ class AddAccount : Fragment() {
         editTextFilledExposedDropdown.setAdapter(adapter)
     }
 
-    private fun saveAccountYoutube(root: View) {
+    private fun showHiddenPasswordListener(
+        root: View, inputYoutubePassword: EditText,
+        inputYoutubeReEntryPassword: EditText
+    ) {
+        val showHiddenPassword = root.findViewById(R.id.show_hide_password) as Button
+        val showHiddenRetryPassword = root.findViewById(R.id.show_hide_retry_password) as Button
+
+        showHiddenPassword.setOnClickListener {
+            if (showHiddenPassword.text.toString().equals(SHOW)) {
+                inputYoutubePassword.transformationMethod =
+                    HideReturnsTransformationMethod.getInstance()
+                showHiddenPassword.text = HIDDEN
+            } else {
+                inputYoutubePassword.transformationMethod =
+                    PasswordTransformationMethod.getInstance()
+                showHiddenPassword.text = SHOW
+            }
+        }
+
+        showHiddenRetryPassword.setOnClickListener {
+            if (showHiddenRetryPassword.text.toString().equals(SHOW)) {
+                inputYoutubeReEntryPassword.transformationMethod =
+                    HideReturnsTransformationMethod.getInstance()
+                showHiddenRetryPassword.text = HIDDEN
+            } else {
+                inputYoutubeReEntryPassword.transformationMethod =
+                    PasswordTransformationMethod.getInstance()
+                showHiddenRetryPassword.text = SHOW
+            }
+        }
+    }
+
+    private fun saveAccountYoutube(
+        root: View,
+        inputYoutubePassword: EditText,
+        inputYoutubeReEntryPassword: EditText
+    ) {
 
         val inputYoutubeTitle = root.findViewById(R.id.input_account_title) as EditText
         val inputYoutubeUsername = root.findViewById(R.id.input_account_username) as EditText
-        val inputYoutubePassword = root.findViewById(R.id.input_account_password) as EditText
-        val inputYoutubeReEntryPassword =
-            root.findViewById(R.id.input_account_re_entry_password) as EditText
         val inputYoutubeDesc = root.findViewById(R.id.input_account_desc) as EditText
         val inputAccountType =
             root.findViewById(R.id.filled_exposed_dropdown) as AutoCompleteTextView
@@ -67,16 +109,12 @@ class AddAccount : Fragment() {
         account.description = youtubeDescription
         account.accountType = inputAccountType.text.toString()
         if (isValidateInputData(account, inputYoutubeReEntryPassword.text.toString())) {
-            if(AccountRepository().saveAccount(account)){
+            if (AccountRepository().saveAccount(account)) {
                 tostText("Save success")
-            }else{
+            } else {
                 tostText("Save fail")
             }
         }
-    }
-
-    fun deleteAccountYoutube(root: View) {
-
     }
 
     private fun isValidateInputData(account: Account, reEntryPassword: String): Boolean {

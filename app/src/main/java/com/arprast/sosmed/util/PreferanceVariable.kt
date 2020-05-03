@@ -7,5 +7,7 @@ class PreferanceVariable {
         const val REFERER = "Referer"
         const val MENU_ID_FIELD = "menuId"
         const val ID = "id"
+        const val SHOW = "Show"
+        const val HIDDEN = "Hidden"
     }
 }

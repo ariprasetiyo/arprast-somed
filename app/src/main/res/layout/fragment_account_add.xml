@@ -26,22 +26,21 @@
         <!-- dropdown account type-->
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/TextInputLayout.FilledBox"
             android:id="@+id/account_type_text_input"
+            style="@style/TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="-3dp"
             android:layout_marginStart="-3dp"
-            android:textColorHint="@color/hintColor"
-            android:hint="Account type">
+            android:layout_marginLeft="-3dp"
+            android:hint="Account type"
+            android:textColorHint="@color/hintColor">
 
             <AutoCompleteTextView
                 android:id="@+id/filled_exposed_dropdown"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="-10dp"
                 android:layout_marginStart="-10dp"
-                />
+                android:layout_marginLeft="-10dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -55,27 +54,58 @@
             app:met_maxCharacters="50"
             app:met_minCharacters="2" />
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/input_account_password"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textWebPassword"
-            android:textSize="16sp"
-            app:met_floatingLabel="highlight"
-            app:met_maxCharacters="50"
-            app:met_minCharacters="2" />
+            android:orientation="horizontal">
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/input_account_re_entry_password"
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/input_account_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.95"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textSize="16sp"
+                app:met_floatingLabel="highlight"
+                app:met_maxCharacters="50"
+                app:met_minCharacters="2">
+
+            </com.rengwuxian.materialedittext.MaterialEditText>
+
+            <Button
+                android:id="@+id/show_hide_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.05"
+                android:text="Show" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Re-entry password"
-            android:inputType="textWebPassword"
-            android:textSize="16sp"
-            app:met_floatingLabel="highlight"
-            app:met_maxCharacters="50"
-            app:met_minCharacters="2" />
+            android:orientation="horizontal">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/input_account_re_entry_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.95"
+                android:hint="Re-entry password"
+                android:inputType="textPassword"
+                android:textSize="16sp"
+                app:met_floatingLabel="highlight"
+                app:met_maxCharacters="50"
+                app:met_minCharacters="2" />
+
+            <Button
+                android:id="@+id/show_hide_retry_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.05"
+                android:text="Show" />
+        </LinearLayout>
+
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/input_account_desc"

@@ -140,7 +140,7 @@ class AccountList(bottomNavigationView: BottomNavigationView?, it: FragmentActiv
                 view.findViewById<TextView>(R.id.hidden_account_id).text.toString()
 
             val builder = AlertDialog.Builder(activity)
-            builder.setTitle("Action bar")
+            builder.setTitle("Account Action")
             builder.setMessage("Are you want to edit or delete ?")
             builder.setPositiveButton("Edit", DialogInterface.OnClickListener { dialog, idDialog ->
                 openFragment(AccountList(bottomNavigationView, it))
