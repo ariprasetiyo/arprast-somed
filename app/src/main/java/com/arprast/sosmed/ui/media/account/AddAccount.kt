@@ -15,9 +15,7 @@ import com.arprastandroid.R
 import com.arprast.sosmed.model.Account
 import com.arprast.sosmed.repository.AccountRepository
 import com.arprast.sosmed.type.AccountType
-import com.arprast.sosmed.util.PreferanceVariable.Companion.HIDDEN
-import com.arprast.sosmed.util.PreferanceVariable.Companion.SHOW
-
+import com.arprast.sosmed.util.PreferanceVariable
 
 class AddAccount(accountId: Long) : Fragment() {
 
@@ -125,26 +123,26 @@ class AddAccount(accountId: Long) : Fragment() {
     ) {
 
         showHiddenPassword.setOnClickListener {
-            if (showHiddenPassword.text.toString().equals(SHOW)) {
+            if (showHiddenPassword.text.toString().equals(PreferanceVariable.SHOW)) {
                 inputYoutubePassword.transformationMethod =
                     HideReturnsTransformationMethod.getInstance()
-                showHiddenPassword.text = HIDDEN
+                showHiddenPassword.text = PreferanceVariable.HIDDEN
             } else {
                 inputYoutubePassword.transformationMethod =
                     PasswordTransformationMethod.getInstance()
-                showHiddenPassword.text = SHOW
+                showHiddenPassword.text = PreferanceVariable.SHOW
             }
         }
 
         showHiddenRetryPassword.setOnClickListener {
-            if (showHiddenRetryPassword.text.toString().equals(SHOW)) {
+            if (showHiddenRetryPassword.text.toString().equals(PreferanceVariable.SHOW)) {
                 inputYoutubeReEntryPassword.transformationMethod =
                     HideReturnsTransformationMethod.getInstance()
-                showHiddenRetryPassword.text = HIDDEN
+                showHiddenRetryPassword.text = PreferanceVariable.HIDDEN
             } else {
                 inputYoutubeReEntryPassword.transformationMethod =
                     PasswordTransformationMethod.getInstance()
-                showHiddenRetryPassword.text = SHOW
+                showHiddenRetryPassword.text = PreferanceVariable.SHOW
             }
         }
     }
