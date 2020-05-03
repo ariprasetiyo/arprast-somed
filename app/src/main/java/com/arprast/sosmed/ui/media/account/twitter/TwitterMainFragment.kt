@@ -84,9 +84,15 @@ class TwitterMainFragment(username: String, password: String) : Fragment() {
                     AccountRepository().updateUserInterface(userInterfacing)
                 }
 
-                //            val fab: FloatingActionButton = root.findViewById(R.id.float_show_password)
 //                return super.shouldInterceptRequest(webview, webrequest);
                 return null
+            }
+
+            override fun onPageFinished(view: WebView, url: String) {
+                if(url.endsWith("https://mobile.twitter.com/")
+                    || url.endsWith("https://mobile.twitter.com")){
+                    fab.visibility = View.GONE
+                }
             }
         })
 
