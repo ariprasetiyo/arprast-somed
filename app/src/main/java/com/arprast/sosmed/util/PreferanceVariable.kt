@@ -6,5 +6,6 @@ class PreferanceVariable {
         const val ORIGIN = "Origin"
         const val REFERER = "Referer"
         const val MENU_ID_FIELD = "menuId"
+        const val ID = "id"
     }
 }

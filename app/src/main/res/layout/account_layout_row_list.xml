@@ -37,6 +37,13 @@
                 />
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:id="@+id/hidden_account_id"
+                />
+
+            <TextView
                 android:id="@+id/account_row_list_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

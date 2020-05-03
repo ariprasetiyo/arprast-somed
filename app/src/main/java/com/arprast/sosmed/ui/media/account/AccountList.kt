@@ -1,12 +1,17 @@
 package com.arprast.sosmed.ui.media.account
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.AdapterView.OnItemLongClickListener
 import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
@@ -18,17 +23,9 @@ import com.arprast.sosmed.ui.media.account.facebook.FacebookMainFragment
 import com.arprast.sosmed.ui.media.account.instagram.InstagramMainFragment
 import com.arprast.sosmed.ui.media.account.twitter.TwitterMainFragment
 import com.arprast.sosmed.ui.media.account.youtube.YoutubeMainFragment
-import com.arprast.sosmed.util.ShowTextUtil
 import com.arprastandroid.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.realm.RealmResults
-import android.widget.AdapterView.OnItemLongClickListener
-import android.util.Log
-import android.view.Gravity
-import android.widget.Toast
-import android.content.DialogInterface
-import android.app.AlertDialog
-
 
 class AccountList(bottomNavigationView: BottomNavigationView?, it: FragmentActivity) : Fragment() {
 
@@ -50,6 +47,7 @@ class AccountList(bottomNavigationView: BottomNavigationView?, it: FragmentActiv
         val titleList: ArrayList<String> = ArrayList()
         val description: ArrayList<String> = ArrayList()
         val accountType: ArrayList<AccountType> = ArrayList()
+        val accountId: ArrayList<Long> = ArrayList()
 
         val account = Account()
         account.accountType = AccountType.YOUTUBE.stringValue
@@ -62,6 +60,7 @@ class AccountList(bottomNavigationView: BottomNavigationView?, it: FragmentActiv
                     titleList.add(accountData.title)
                     description.add(accountData.description)
                     accountType.add(AccountType.valueOfString(accountData.accountType))
+                    accountId.add(accountData.id)
                 }
                 listView.adapter =
                     AccountListAdapter(
@@ -70,6 +69,7 @@ class AccountList(bottomNavigationView: BottomNavigationView?, it: FragmentActiv
                         passwordList.toTypedArray(),
                         description.toTypedArray(),
                         accountType.toTypedArray(),
+                        accountId.toTypedArray(),
                         context
                     )
 
@@ -124,24 +124,35 @@ class AccountList(bottomNavigationView: BottomNavigationView?, it: FragmentActiv
                             passwordFromList
                         )
                     )
-                else -> tostText("Not yet support")
+                else -> {
+                    bottomNavigationView?.visibility = View.VISIBLE
+                    tostText("Not yet support")
+                }
             }
 
         })
     }
 
     private fun itemLongClick(listView: ListView) {
-        listView.setOnItemLongClickListener(OnItemLongClickListener { arg0, arg1, pos, id ->
+        listView.setOnItemLongClickListener(OnItemLongClickListener { parent, view, pos, id ->
+
+            val hiddenAccountId =
+                view.findViewById<TextView>(R.id.hidden_account_id).text.toString()
 
             val builder = AlertDialog.Builder(activity)
             builder.setTitle("Action bar")
             builder.setMessage("Are you want to edit or delete ?")
-            builder.setPositiveButton("Edit", DialogInterface.OnClickListener { dialog, id ->
-
+            builder.setPositiveButton("Edit", DialogInterface.OnClickListener { dialog, idDialog ->
+                openFragment(AccountList(bottomNavigationView, it))
             })
-            builder.setNegativeButton("Delete", DialogInterface.OnClickListener { dialog, id ->
-
-            })
+            builder.setNegativeButton(
+                "Delete",
+                DialogInterface.OnClickListener { dialog, idDialog ->
+                    val account = Account()
+                    account.id = hiddenAccountId.toLong()
+                    AccountRepository().deleteAccount(account)
+                    openFragment(AccountList(bottomNavigationView, it))
+                })
 
             builder.create().show()
             true

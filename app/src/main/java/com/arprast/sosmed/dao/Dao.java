@@ -2,11 +2,13 @@ package com.arprast.sosmed.dao;
 
 import android.util.Log;
 
+import com.arprast.sosmed.model.Account;
 import com.arprast.sosmed.model.UserInterfacing;
 
 import io.realm.Realm;
 
 import static com.arprast.sosmed.util.PreferanceVariable.DEBUG_NAME;
+import static com.arprast.sosmed.util.PreferanceVariable.ID;
 import static com.arprast.sosmed.util.PreferanceVariable.MENU_ID_FIELD;
 
 
@@ -70,6 +72,34 @@ public class Dao {
             @Override
             public void onError(Throwable error) {
                 Log.e(DEBUG_NAME, "Update error: " + userInterfacing.toString(), error);
+
+            }
+        });
+    }
+
+    public void updateAccount(final Account account) {
+        realm.executeTransactionAsync(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Account accountUpdate = realm.where(Account.class)
+                        .equalTo(ID, account.getId())
+                        .findFirst();
+
+                accountUpdate.setAccountType(account.getAccountType());
+                accountUpdate.setDescription(account.getDescription());
+                accountUpdate.setPassword(account.getPassword());
+                accountUpdate.setTitle(account.getTitle());
+                accountUpdate.setUsername(account.getUsername());
+            }
+        }, new Realm.Transaction.OnSuccess() {
+            @Override
+            public void onSuccess() {
+                Log.i(DEBUG_NAME, "Update success :" + account.toString());
+            }
+        }, new Realm.Transaction.OnError() {
+            @Override
+            public void onError(Throwable error) {
+                Log.e(DEBUG_NAME, "Update error: " + account.toString(), error);
 
             }
         });

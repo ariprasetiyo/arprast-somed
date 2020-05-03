@@ -17,6 +17,7 @@ class AccountListAdapter(
     val passwordC: Array<String>,
     val descriptionC: Array<String>,
     val accountTypeC: Array<AccountType>,
+    val accountIdC: Array<Long>,
     val contextC: Context
 ) : BaseAdapter() {
 
@@ -25,6 +26,7 @@ class AccountListAdapter(
     private val password: Array<String> = passwordC
     private val description: Array<String> = descriptionC
     private val accountType: Array<AccountType> = accountTypeC
+    private val accountId: Array<Long> = accountIdC
     private val context: Context = contextC
     private val inflter: LayoutInflater = (LayoutInflater.from(contextC))
 
@@ -54,6 +56,9 @@ class AccountListAdapter(
         val ttt = view.findViewById<TextView>(R.id.hidden_username_and_password)
         ttt.setText(username[position])
         ttt.setTag(password[position])
+
+        val hiddenAccountId = view.findViewById<TextView>(R.id.hidden_account_id)
+        hiddenAccountId.setText("${accountId[position]}")
 
 //        view.findViewById<TextView>(R.id.youtube_row_list_password).setText(password[position])
         return view

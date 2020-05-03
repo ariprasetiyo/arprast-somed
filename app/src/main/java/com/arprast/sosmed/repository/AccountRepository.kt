@@ -28,23 +28,23 @@ class AccountRepository : ViewModel() {
     fun getAccounts(account: Account): LiveData<RealmResults<Account>> {
         return realm.accountDao().getAccounts(account)
     }
-//
-//    fun deleteAccount(): LiveData<RealmResults<Account>> {
-//        return realm.accountDao().getAccounts()
-//    }
-//
-//    fun editAccount(): LiveData<RealmResults<Account>> {
-//        return realm.accountDao().getAccounts()
-//    }
 
+
+    fun deleteAccount(account: Account) {
+        realm.accountDao().deleteAccount(account)
+    }
+
+    fun updateAccount(account: Account) {
+        realm.accountDao().deleteAccount(account)
+    }
 
     fun insertUpdateUserInterfacing(userInterfacing: UserInterfacing) {
         userInterfacing.createDate = Date()
         realm.beginTransaction()
         val interfacing = Dao(realm).getUserInterface(userInterfacing)
-        if(interfacing == null || interfacing.menuId.isEmpty()){
+        if (interfacing == null || interfacing.menuId.isEmpty()) {
             Dao(realm).saveUserInterfacing(userInterfacing)
-        }else{
+        } else {
             Dao(realm).updateUserInterfaceSync(userInterfacing)
         }
         realm.commitTransaction()
@@ -58,7 +58,7 @@ class AccountRepository : ViewModel() {
     }
 
     fun updateUserInterfaceLiveData(userInterfacing: UserInterfacing) {
-         RealmLiveDataDao(realm).updateUserInterfacing(userInterfacing)
+        RealmLiveDataDao(realm).updateUserInterfacing(userInterfacing)
     }
 
     fun getUserInterfacing(userInterfacing: UserInterfacing): UserInterfacing {

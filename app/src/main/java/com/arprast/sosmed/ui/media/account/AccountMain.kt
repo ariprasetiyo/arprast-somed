@@ -1,10 +1,8 @@
 package com.arprast.sosmed.ui.media.account
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.arprastandroid.R
@@ -24,7 +22,6 @@ class AccountMain : Fragment() {
                 root.findViewById(R.id.account_bottom_navigation) as BottomNavigationView
             openFragment(AccountList(bottomNavigationView, it))
             setBottomNavigationView(bottomNavigationView, it)
-
         }
         return root
 
@@ -50,12 +47,21 @@ class AccountMain : Fragment() {
                         openFragment(AddAccount())
                     }
                     R.id.account_bottom_menu_help -> {
-
+                        tostText("Not yet support")
                     }
                 }
                 return true
             }
         })
+    }
+
+    private fun tostText(text: String) {
+        activity.let {
+            val invalidateInputMesssage =
+                Toast.makeText(it, text, Toast.LENGTH_LONG)
+            invalidateInputMesssage.setGravity(Gravity.CENTER, 0, 0)
+            invalidateInputMesssage.show()
+        }
     }
 }
 
