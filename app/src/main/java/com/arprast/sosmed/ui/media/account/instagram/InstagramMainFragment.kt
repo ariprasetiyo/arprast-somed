@@ -62,7 +62,6 @@ class InstagramMainFragment(username: String, password: String) : Fragment() {
                         "javascript:var yy =document.getElementsByName('username')[0].value = '$username';" +
                                 "var xx = document.getElementsByName('password')[0].value='$password';"
                     )
-//                    ShowTextUtil.showTextUtil("Copy password below !", password, context)
                 }
             }
 

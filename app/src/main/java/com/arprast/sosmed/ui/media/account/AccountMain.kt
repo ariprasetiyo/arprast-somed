@@ -28,7 +28,6 @@ class AccountMain : Fragment() {
         }
         return root
 
-
     }
 
     private fun openFragment(fragment: Fragment) {
