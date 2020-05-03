@@ -1,17 +1,19 @@
 package com.arprast.sosmed.ui.media.account.twitter
 
-import android.app.AlertDialog
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
-import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.arprast.sosmed.model.UserInterfacing
+import com.arprast.sosmed.repository.AccountRepository
+import com.arprast.sosmed.type.UserInterfaceType
+import com.arprast.sosmed.util.PreferanceVariable
+import com.arprast.sosmed.util.PreferanceVariable.Companion.DEBUG_NAME
 import com.arprast.sosmed.util.ShowTextUtil
 import com.arprastandroid.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -28,13 +30,15 @@ class TwitterMainFragment(username: String, password: String) : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val root = inflater.inflate(R.layout.fragment_media_youtube, container, false)
 
         val fab: FloatingActionButton = root.findViewById(R.id.float_show_password)
-        fab.setOnClickListener { view ->
-            ShowTextUtil.showTextUtil("Credential account !", "Username: $username\nPassword: $password", context)
-
+        fab.setOnClickListener {
+            ShowTextUtil.showTextUtil(
+                "Credential account !",
+                "Username: $username\nPassword: $password",
+                context
+            )
         }
 
         val webViewFacebook = root.findViewById(R.id.webview) as WebView
@@ -48,9 +52,8 @@ class TwitterMainFragment(username: String, password: String) : Fragment() {
         webViewFacebook.setWebChromeClient(object : WebChromeClient() {
             override fun onConsoleMessage(consoleMessage: ConsoleMessage): Boolean {
                 Log.d(
-                    "debug-arprast", consoleMessage.message() + " -- From line "
-                            + consoleMessage.lineNumber() + " of "
-                            + consoleMessage.sourceId()
+                    DEBUG_NAME, "${consoleMessage.message()} -- From line "
+                            + "${consoleMessage.lineNumber()}  of ${consoleMessage.sourceId()}"
                 )
                 return super.onConsoleMessage(consoleMessage)
             }
@@ -60,6 +63,30 @@ class TwitterMainFragment(username: String, password: String) : Fragment() {
                     showPassword = false
                     ShowTextUtil.showTextUtil("Copy password below !", password, context)
                 }
+            }
+        })
+
+        webViewFacebook.setWebViewClient(object : WebViewClient() {
+
+            //webViewInstance.loadUrl("file:///android_asset/alert.html")
+            @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+            override fun shouldInterceptRequest(
+                webview: WebView,
+                webrequest: WebResourceRequest
+            ): WebResourceResponse? {
+                val origin =
+                    webrequest.requestHeaders.get(PreferanceVariable.REFERER).toString()
+                Log.d(DEBUG_NAME, "${webrequest.requestHeaders}")
+                if (origin.startsWith("https://mobile.twitter.com/home")) {
+                    val userInterfacing = UserInterfacing()
+                    userInterfacing.menuId = UserInterfaceType.SHOW_CREDENTIAL.stringValue
+                    userInterfacing.isDisabled = false
+                    AccountRepository().updateUserInterface(userInterfacing)
+                }
+
+                //            val fab: FloatingActionButton = root.findViewById(R.id.float_show_password)
+//                return super.shouldInterceptRequest(webview, webrequest);
+                return null
             }
         })
 

@@ -10,6 +10,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.arprast.sosmed.model.UserInterfacing
+import com.arprast.sosmed.repository.AccountRepository
+import com.arprast.sosmed.type.UserInterfaceType
 import com.arprastandroid.R
 import com.google.android.material.navigation.NavigationView
 import io.realm.Realm
@@ -23,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initRealm()
+        initData()
 
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -58,6 +62,13 @@ class MainActivity : AppCompatActivity() {
             .schemaVersion(0)
             .build()
         Realm.setDefaultConfiguration(configuration)
+    }
+
+    private fun initData(){
+        val userInterfacing = UserInterfacing()
+        userInterfacing.menuId = UserInterfaceType.SHOW_CREDENTIAL.stringValue
+        userInterfacing.isDisabled = true
+        AccountRepository().insertUpdateUserInterfacing(userInterfacing)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

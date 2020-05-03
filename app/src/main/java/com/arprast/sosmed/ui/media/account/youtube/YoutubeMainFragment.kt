@@ -11,9 +11,9 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.arprast.sosmed.util.ShowTextUtil
+import com.arprast.sosmed.util.PreferanceVariable
 import com.arprastandroid.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 
 class YoutubeMainFragment(username: String, password: String) : Fragment() {
 
@@ -31,7 +31,11 @@ class YoutubeMainFragment(username: String, password: String) : Fragment() {
 
         val fab: FloatingActionButton = root.findViewById(R.id.float_show_password)
         fab.setOnClickListener { view ->
-            ShowTextUtil.showTextUtil("Credential account !", "Username: $username\nPassword: $password", context)
+            ShowTextUtil.showTextUtil(
+                "Credential account !",
+                "Username: $username\nPassword: $password",
+                context
+            )
         }
 
         val webViewInstance = root.findViewById(R.id.webview) as WebView
@@ -54,7 +58,7 @@ class YoutubeMainFragment(username: String, password: String) : Fragment() {
             //webViewInstance.loadUrl("file:///android_asset/alert.html")
             override fun onLoadResource(view: WebView, url: String) {
 
-                Log.d("ari-p", url)
+                Log.d(PreferanceVariable.DEBUG_NAME, url)
                 if (onceAccess
                     && (url.startsWith("https://accounts.google.com/_/lookup/accountlookup?"))
                     || (url.startsWith("https://accounts.google.com/_/signin/chooseaccount?"))
@@ -65,6 +69,14 @@ class YoutubeMainFragment(username: String, password: String) : Fragment() {
 
                 if (url.startsWith("https://ssl.gstatic.com/accounts/static/_/js/k=gaia.gaiafe_glif.en.ZHrBSbWvFD0.O/am=2MYPCP2QAACACBQBfgAAAAAAAAAAgAaBx-chj787mYk-6mW3JRs/d=0/ct=zgms/rs=ABkqax0GrHOGTn-8emJKHSyccs8OVlFyng/m=sy5a,sy5w,sy65,sy5b,sy5x,sy66,sy61,sy6b,emf,emg,ems,emh,emi,emj,emk,eml,emm,emn,emo,emp,emq,emr,identifier_view")) {
                     ShowTextUtil.showTextUtil("Copy username below !", username, context)
+                }
+
+                if (url.startsWith("https://m.youtube.com/yts/jsbin")
+                    || url.startsWith("https://m.youtube.com/s/player")
+                    || url.startsWith("https://m.youtube.com/youtubei")
+                    || url.startsWith("https://googleads.g.doubleclick.net/pagead")
+                ) {
+                    fab.visibility = View.GONE
                 }
             }
 
